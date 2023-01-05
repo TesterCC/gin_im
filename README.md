@@ -12,6 +12,7 @@
 go get -u github.com/gin-gonic/gin
 go get -u go.mongodb.org/mongo-driver/mongo
 go get -u github.com/gorilla/websocket
+go get -u github.com/golang-jwt/jwt/v4
 ```
 
 ## Docker install MongoDB
@@ -26,6 +27,10 @@ docker run -d --name some-mongo \
 -p 27017:27017 \
 mongo
 ```
+
+## 数据库设计
+
+见[MongoDB Collection Design](models/model.md)
 
 ## IM结构
 
