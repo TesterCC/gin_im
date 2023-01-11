@@ -39,7 +39,7 @@ mongo
 
 ## 进度
 
-- [【项目实战】基于Gin、MongoDB的即时通讯系统](https://www.bilibili.com/video/BV1YL4y1c7ZX/?p=3)
+- [【项目实战】基于Gin、MongoDB的即时通讯系统](https://www.bilibili.com/video/BV1YL4y1c7ZX/?p=5)
 
 ## REF
 

@@ -9,7 +9,7 @@ import (
 type UserClaims struct {
 	Id    string `json:"_id"`
 	Email string `json:"email"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 }
 
 // GetMd5
@@ -25,9 +25,9 @@ var myKey = []byte("im")
 // 生成 token
 func GenerateToken(_id, email string) (string, error) {
 	UserClaim := &UserClaims{
-		Id:             _id,
-		Email:          email,
-		StandardClaims: jwt.StandardClaims{},
+		Id:               _id,
+		Email:            email,
+		RegisteredClaims: jwt.RegisteredClaims{},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, UserClaim)
 	tokenString, err := token.SignedString(myKey)
@@ -53,11 +53,8 @@ func AnalyseToken(tokenString string) (*UserClaims, error) {
 	return userClaim, nil
 }
 
-
 // GetUUID
 // 生成唯一码
 func GetUUID(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
-
-
