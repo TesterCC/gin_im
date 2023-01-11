@@ -4,8 +4,8 @@
 
 ```text
 {
-    "account": "账号",
-    "password": "密码",
+    "account": "账号",  // admin
+    "password": "密码",  // admin password md5 hash
     "nickname": "昵称",
     "gender": "性别",   // 0-unknown, 1-male, 2-female  // video use sex
     "email": "邮箱",

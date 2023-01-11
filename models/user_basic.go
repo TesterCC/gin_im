@@ -1,5 +1,10 @@
 package models
 
+import (
+	"context"
+	"go.mongodb.org/mongo-driver/bson"
+)
+
 type UserBasic struct {
 	Id        string `bson:"_id"` // mongodb uuid
 	Account   string `bson:"account"`
@@ -15,4 +20,12 @@ type UserBasic struct {
 // 定义函数，返回结构体对应的集合名称，define a func return struct UserBasic collection name
 func (UserBasic) CollectionName() string {
 	return "user_basic"
+}
+
+func GerUserBasicByAccountPassword(account, password string) (*UserBasic, error) {
+	ub := new(UserBasic)
+	// 查询结果映射到user basic下
+	err := Mongo.Collection(UserBasic{}.CollectionName()).
+		FindOne(context.Background(), bson.D{{"account", account}, {"password", password}}).Decode(ub)
+	return ub, err
 }
