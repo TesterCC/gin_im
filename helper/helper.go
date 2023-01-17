@@ -4,16 +4,17 @@ import (
 	"crypto/md5"
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type UserClaims struct {
-	Id    string `json:"_id"`
+	//Id    string `json:"_id"`   // 对应： uc.Id, str not ObjectiveID
+	Id    primitive.ObjectID `json:"_id"`   // 对应： uc.Id, str not ObjectiveID
 	Email string `json:"email"`
 	jwt.RegisteredClaims
 }
 
-// GetMd5
-// 生成 md5
+// GetMd5 生成 md5
 func GetMd5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
@@ -24,8 +25,12 @@ var myKey = []byte("im")
 // GenerateToken
 // 生成 token
 func GenerateToken(_id, email string) (string, error) {
+
+	objectiID, err := primitive.ObjectIDFromHex(_id)
+
 	UserClaim := &UserClaims{
-		Id:               _id,
+		//Id:               _id,
+		Id:               objectiID,
 		Email:            email,
 		RegisteredClaims: jwt.RegisteredClaims{},
 	}

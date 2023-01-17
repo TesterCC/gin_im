@@ -3,6 +3,7 @@ package models
 import (
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type UserBasic struct {
@@ -27,5 +28,30 @@ func GerUserBasicByAccountPassword(account, password string) (*UserBasic, error)
 	// 查询结果映射到user basic下
 	err := Mongo.Collection(UserBasic{}.CollectionName()).
 		FindOne(context.Background(), bson.D{{"account", account}, {"password", password}}).Decode(ub)
+	return ub, err
+}
+
+//func GetUserBasicById(id string) (*UserBasic, error) {
+//	ub := new(UserBasic)
+//	// 查询结果映射到user basic下
+//	err := Mongo.Collection(UserBasic{}.CollectionName()).
+//		FindOne(context.Background(), bson.D{{"_id", id}}).Decode(ub)
+//	return ub, err
+//}
+
+func GetUserBasicById(_id primitive.ObjectID) (*UserBasic, error) {
+	ub := new(UserBasic)
+	// 查询结果映射到user basic下
+	err := Mongo.Collection(UserBasic{}.CollectionName()).
+		FindOne(context.Background(), bson.D{{"_id", _id}}).Decode(ub)
+	return ub, err
+}
+
+
+func GetUserBasicByEmail(email string) (*UserBasic, error) {
+	ub := new(UserBasic)
+	// 查询结果映射到user basic下
+	err := Mongo.Collection(UserBasic{}.CollectionName()).
+		FindOne(context.Background(), bson.D{{"email", email}}).Decode(ub)
 	return ub, err
 }
