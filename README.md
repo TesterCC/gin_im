@@ -13,6 +13,7 @@ go get -u github.com/gin-gonic/gin
 go get -u go.mongodb.org/mongo-driver/mongo
 go get -u github.com/gorilla/websocket
 go get -u github.com/golang-jwt/jwt/v4
+go get github.com/jordan-wright/email
 ```
 
 ## Docker install MongoDB
@@ -34,7 +35,7 @@ mongo
 
 ## IM结构
 
-- 用户模块：密码登录、邮箱注册、用户详情
+- 用户模块：密码登录 Fin 、邮箱注册、用户详情 Fin
 - 通讯模块（核心）：一对一通讯、多对多通讯、消息列表、聊天记录列表
 
 ## 进度
