@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "67efd5e3-f443-465b-a914-ba4cf7feb8a2",
+		"name": "gin_im",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "account",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user detail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2I2MmNmZDI3NmQwMDAwMzMwMDdhMDQiLCJlbWFpbCI6ImFkbWluQGFkbWluIn0.vDrTpaCuNLfo9UpGpPexvINxovYwQIGs4nubfvo33QExxx",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/u/user/detail",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"u",
+						"user",
+						"detail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
