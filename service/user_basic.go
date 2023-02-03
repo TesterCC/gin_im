@@ -79,3 +79,49 @@ func UserDetail(c *gin.Context) {
 	})
 
 }
+
+func SendCode(c *gin.Context)  {
+	email := c.PostForm("email")
+	log.Printf(email) // for debug
+	if email == "" {
+		c.JSON(http.StatusOK, gin.H{
+			"code": 99,
+			"msg": "email empty",
+			"data": nil,
+		})
+		return
+	}
+
+	// call model encapsulated method
+	cnt,err := models.GetUserBasicCountByEmail(email)
+	if err != nil {
+		log.Printf("[DB ERROR]: %v\n")
+		return
+	}
+
+	if cnt > 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"code": 22,
+			"msg": "current email already used",
+			"data": nil,
+		})
+		return
+	}
+
+	err = helper.SendCode(email, "135246")
+	if err != nil{
+		log.Printf("[Send email ERROR]:%v\n", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code": 3,
+			"msg": "operation failed",
+			"data": nil,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 1,
+		"msg": "success",
+		"data": nil,
+	})
+}

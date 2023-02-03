@@ -11,6 +11,9 @@ func Router() *gin.Engine {
 	// user login
 	r.POST("/login", service.Login)
 
+	// send verify code
+	r.POST("/send/code", service.SendCode)
+
 	auth := r.Group("/u", middlewares.AuthCheck())
 
 	// user detail

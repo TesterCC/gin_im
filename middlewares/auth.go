@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// check token
 func AuthCheck() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.GetHeader("token")

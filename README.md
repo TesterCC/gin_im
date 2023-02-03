@@ -40,7 +40,9 @@ mongo
 
 ## 进度
 
-- [【项目实战】基于Gin、MongoDB的即时通讯系统](https://www.bilibili.com/video/BV1YL4y1c7ZX/?p=6)
+- [【项目实战】基于Gin、MongoDB的即时通讯系统](https://www.bilibili.com/video/BV1YL4y1c7ZX/?p=7)
+
+注意启动时要使用root权限
 
 ## REF
 

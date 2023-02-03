@@ -47,11 +47,14 @@ func GetUserBasicById(_id primitive.ObjectID) (*UserBasic, error) {
 	return ub, err
 }
 
-
 func GetUserBasicByEmail(email string) (*UserBasic, error) {
 	ub := new(UserBasic)
 	// 查询结果映射到user basic下
 	err := Mongo.Collection(UserBasic{}.CollectionName()).
 		FindOne(context.Background(), bson.D{{"email", email}}).Decode(ub)
 	return ub, err
+}
+
+func GetUserBasicCountByEmail(email string) (int64, error) {
+	return Mongo.Collection(UserBasic{}.CollectionName()).CountDocuments(context.Background(), bson.D{{"email", email}})
 }
