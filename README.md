@@ -29,6 +29,14 @@ docker run -d --name some-mongo \
 mongo
 ```
 
+## import data
+
+```
+use navicat create mongodb - im db,
+active im db, then right click "Excute Script File"
+select im.sql and run it
+```
+
 ## 数据库设计
 
 见[MongoDB Collection Design](models/model.md)
