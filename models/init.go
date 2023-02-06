@@ -14,10 +14,10 @@ var Mongo = InitMongo()
 func InitMongo() *mongo.Database {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	// local without password setting
+	// 1.local without password setting
 	//client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 
-	// dev server with password
+	// 2.dev server with password
 	client, err := mongo.Connect(ctx, options.Client().SetAuth(options.Credential{
 		Username: "admin",
 		Password: "admin",

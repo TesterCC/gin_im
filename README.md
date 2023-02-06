@@ -13,7 +13,7 @@ go get -u github.com/gin-gonic/gin
 go get -u go.mongodb.org/mongo-driver/mongo
 go get -u github.com/gorilla/websocket
 go get -u github.com/golang-jwt/jwt/v4
-go get github.com/jordan-wright/email
+go get -u github.com/jordan-wright/email
 ```
 
 ## Docker install MongoDB

@@ -1,0 +1,31 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+title gin_im project
+caption plantUML mindmap 20230206
+
+
+* <&book>gin_im
+** 用户模块
+*** <s>密码登录</s>
+*** <s>发送验证码</s>
+*** 用户注册
+*** <s>用户详情</s>
+** <&star>通讯模块（核心）
+*** 使用HTTP搭建Websocket服务
+*** <&star>使用Gin搭建Websocket服务
+*** 一对一通讯
+*** 多对多通讯
+*** 消息列表
+*** 聊天记录列表
+
+'** <&pulse>SolydXK
+'** <&people>SteamOS
+
+'header
+'TesterCC
+'endheader
+
+center footer Copyright@2023
+
+@endmindmap
