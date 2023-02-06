@@ -69,12 +69,12 @@ func GetUUID(s string) string {
 }
 
 // SendCode
-// 发送验证码
+// 发送验证码  Attention:未知原因腾讯系邮箱会拦截，收件邮箱最好不要是腾讯系的
 func SendCode(toUserEmail, code string) error {
 	e := email.NewEmail()
 	e.From = "Admin <grtest00@163.com>"
 	e.To = []string{toUserEmail}
-	e.Subject = "验证码已发送，请查收"
+	e.Subject = "[Notice]验证码已发送，请查收"
 	e.HTML = []byte("您的验证码：<b>" + code + "</b>")
 	return e.SendWithTLS("smtp.163.com:465",
 		smtp.PlainAuth("", "grtest00@163.com", define.MailPassword, "smtp.163.com"),
