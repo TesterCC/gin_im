@@ -23,7 +23,8 @@ func InitMongo() *mongo.Database {
 		Username: "admin",
 		Password: "admin",
 		//PasswordSet: false,
-	}).ApplyURI("mongodb://192.168.170.137:27017"))
+		}).ApplyURI("mongodb://192.168.170.137:27017"))
+	//}).ApplyURI("mongodb://localhost:27017"))
 
 	if err != nil {
 		log.Println("Connection MongoDB Error: ", err)
