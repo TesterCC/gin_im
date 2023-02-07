@@ -12,7 +12,7 @@ caption plantUML mindmap 20230206
 *** 用户注册
 *** <s>用户详情</s>
 ** <&star>通讯模块（核心）
-*** 使用HTTP搭建Websocket服务
+*** <s>使用HTTP搭建Websocket服务</s>
 *** <&star>使用Gin搭建Websocket服务
 *** 一对一通讯
 *** 多对多通讯
