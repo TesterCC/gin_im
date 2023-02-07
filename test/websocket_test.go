@@ -2,6 +2,7 @@ package test
 
 import (
 	"flag"
+	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -23,29 +24,29 @@ func echo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer c.Close()
-	ws[c] = struct{}{}   // ws add connection
+	ws[c] = struct{}{} // ws add connection
 	for {
-		mt, message, err := c.ReadMessage()   // 接收到一个消息后要给所有人发
+		mt, message, err := c.ReadMessage() // 接收到一个消息后要给所有人发
 		if err != nil {
-			log.Println("read:", err)
+			log.Println("read: ", err)
 			break
 		}
-		log.Printf("recv: %s", message)
+		log.Printf("[D] recv: %s", message)
 
 		// loop
 		for {
 			mt, message, err := c.ReadMessage()
-			if err != nil{
-				log.Println("read: ",err)
+			if err != nil {
+				log.Println("read: ", err)
 				break
 			}
-			log.Printf("[D recv: %s", message)
+			log.Printf("[D] recv: %s", message)
 
-			for conn := range ws{
+			for conn := range ws {
 				err = conn.WriteMessage(mt, message)
 
-				if err != nil{
-					log.Println("[D] write: ", err)
+				if err != nil {
+					log.Println("[D] ws write: ", err)
 					break
 				}
 			}
@@ -71,6 +72,12 @@ func TestWebsocketServer(t *testing.T) {
 }
 
 func TestGinWebsocketServer(t *testing.T) {
-	
-	
+	r := gin.Default()
+
+	// 路由处理
+	r.GET("/echo", func(ctx *gin.Context) {
+		echo(ctx.Writer, ctx.Request)
+	})
+	r.Run(":8080")
+
 }

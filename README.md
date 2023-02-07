@@ -48,7 +48,7 @@ select im.sql and run it
 
 ## 进度
 
-- [【项目实战】基于Gin、MongoDB的即时通讯系统](https://www.bilibili.com/video/BV1YL4y1c7ZX/?p=8)
+- [【项目实战】基于Gin、MongoDB的即时通讯系统](https://www.bilibili.com/video/BV1YL4y1c7ZX/?p=9)  0：38
 
 注意启动时要使用root权限
 

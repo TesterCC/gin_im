@@ -11,11 +11,14 @@ caption plantUML mindmap 20230206
 *** <s>发送验证码</s>
 *** 用户注册
 *** <s>用户详情</s>
+*** 添加好友
+*** 删除好友
 ** <&star>通讯模块（核心）
 *** <s>使用HTTP搭建Websocket服务</s>
-*** <&star>使用Gin搭建Websocket服务
-*** 一对一通讯
-*** 多对多通讯
+*** <s><&star>使用Gin搭建Websocket服务</s>
+*** 发送、接收消息
+**** 一对一通讯
+**** 多对多通讯
 *** 消息列表
 *** 聊天记录列表
 
@@ -26,6 +29,6 @@ caption plantUML mindmap 20230206
 'TesterCC
 'endheader
 
-center footer Copyright@2023
+center footer Copyright@2023 by TesterCC
 
 @endmindmap
