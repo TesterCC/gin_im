@@ -2,6 +2,8 @@ package test
 
 import (
 	"flag"
+	"fmt"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"
@@ -11,12 +13,23 @@ import (
 
 var addr = flag.String("addr", "localhost:8080", "http service address")
 
-var upgrader = websocket.Upgrader{} // use default options, update http to websocket  todo
+// use default options, update http to websocket
+/*  gorilla/websocket cross-origin issue ref:
+	https://pkg.go.dev/github.com/gorilla/websocket#section-readme
+	https://github.com/gorilla/websocket/issues/367
+*/
+var upgrader = websocket.Upgrader{
+	// same to line 31, https://blog.csdn.net/taoshihan/article/details/109214077
+	CheckOrigin:func(r *http.Request) bool { return true },
+}    // Cross-Origin setting
 
 // 07 add var
 var ws = make(map[*websocket.Conn]struct{})
 
 func echo(w http.ResponseWriter, r *http.Request) {
+
+	//upgrader.CheckOrigin = func(r *http.Request) bool { return true }
+
 	// c 为 websocket定义的connection
 	c, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -71,8 +84,17 @@ func TestWebsocketServer(t *testing.T) {
 
 }
 
+// 注意会有跨域问题，https://blog.csdn.net/taoshihan/article/details/109214077
+// 或者用官方插件全局解决跨域问题
+// 看了下其实是 github.com/gorilla/websocket 的问题，见上方注释, https://blog.csdn.net/taoshihan/article/details/109214077
 func TestGinWebsocketServer(t *testing.T) {
 	r := gin.Default()
+	//r.Use(cors.Default())  // 全局跨域
+
+	fmt.Println("[*] current mode: ", gin.Mode())
+	if gin.Mode() == "debug" {
+		r.Use(cors.Default()) // 在 debug 模式下, 允许跨域访问
+	}
 
 	// 路由处理
 	r.GET("/echo", func(ctx *gin.Context) {

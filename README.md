@@ -14,6 +14,7 @@ go get -u go.mongodb.org/mongo-driver/mongo
 go get -u github.com/gorilla/websocket
 go get -u github.com/golang-jwt/jwt/v4
 go get -u github.com/jordan-wright/email
+go get -u github.com/gin-contrib/cors     # Gin解决跨域问题
 ```
 
 ## Docker install MongoDB

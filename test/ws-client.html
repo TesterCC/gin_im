@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ws client</title>
+</head>
+<body>
+
+</body>
+
+
+<script>
+// other ref:
+// https://blog.csdn.net/funche/article/details/103772596
+
+    let ws = new WebSocket("ws://localhost:8080/echo")
+
+    ws.onopen = function () {
+        console.log("[*]connection open")
+        ws.send("hello ws-client")
+        ws.send('{"event":"subscribe", "channel":"guest"}')
+    }
+
+    // 获取客户端返回的消息
+    ws.onmessage = function (msg) {
+        console.log(msg.data)
+    }
+
+    ws.onclose=function (msg) {
+        console.log("connection closed")
+    }
+</script>
+</html>
