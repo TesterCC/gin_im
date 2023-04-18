@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -9,6 +10,10 @@ import (
 )
 
 var Mongo = InitMongo()
+
+var DBHost = "192.168.80.129"
+var DBPort = 27017
+var DBURI = fmt.Sprintf("mongodb://%s:%d", DBHost, DBPort)
 
 // encapsulated mongo query
 func InitMongo() *mongo.Database {
@@ -18,12 +23,15 @@ func InitMongo() *mongo.Database {
 	// 1.local without password setting
 	//client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 
+	fmt.Println("[C] DBURI: ",DBURI)
+
 	// 2.dev server with password
 	client, err := mongo.Connect(ctx, options.Client().SetAuth(options.Credential{
 		Username: "admin",
 		Password: "admin",
 		//PasswordSet: false,
-		}).ApplyURI("mongodb://192.168.170.137:27017"))
+	}).ApplyURI(DBURI))
+	//}).ApplyURI("mongodb://192.168.80.129:27017"))
 	//}).ApplyURI("mongodb://localhost:27017"))
 
 	if err != nil {
