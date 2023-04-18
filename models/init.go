@@ -12,8 +12,9 @@ import (
 var Mongo = InitMongo()
 
 var DBHost = "192.168.80.129"
-var DBPort = 27017
-var DBURI = fmt.Sprintf("mongodb://%s:%d", DBHost, DBPort)
+var DBPort = "27017"
+//var DBURI = fmt.Sprintf("mongodb://%s:%d", DBHost, DBPort)   // can cat different type, but performance low
+var DBURI = fmt.Sprintf("mongodb://"+DBHost+":"+DBPort)
 
 // encapsulated mongo query
 func InitMongo() *mongo.Database {
